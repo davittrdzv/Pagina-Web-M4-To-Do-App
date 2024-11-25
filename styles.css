@@ -1,0 +1,8 @@
+.header-div  {
+    display: flex;
+    flex-direction: row;
+}
+
+.header-div span {
+    width: 20%;
+}

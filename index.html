@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <a href="">Logoipsum</a>
+    </nav>
+    <form id="create-to-do-form">
+        <label for="to-do-input">Title</label>
+        <input type="text" name="to-do-type" id="to-do-input">
+        <label for="due-date">Due Date</label>
+        <input type="date" name="to-do-type" id="due-date" placeholder="yyyy-mm-dd">
+        <input type="radio" id="active-radio" name="to-do-type" value="active">
+        <label for="active-radio">Active</label>
+        <input type="radio" id="pending-radio" name="to-do-type" value="pending">
+        <label for="pending-radio">Pending</label>
+        <input type="radio" id="closed-radio" name="to-do-type" value="closed">
+        <label for="closed-radio">Closed</label>
+        <button id="add-button">+ add</button>
+    </form>
+    <main>
+        <h1>To-Do's</h1>
+        <!--Contenedor avanzado opción 1-->
+        <div id="to-do-container">
+            <div id="main-active-to-do-container">
+                <div id="header-active-to-do-container">
+                    <h3>Active To-Do's</h3>
+                    <div class="header-div">
+                        <span>Title</span>
+                        <span>Creation Date</span>
+                        <span>Due Date</span>
+                        <span>Status</span>
+                        <span>Edit/Delete</span>
+                    </div>
+                </div>
+                <div id="active-to-do-container">
+                </div>
+            </div>
+            <div id="main-pending-to-do-container">
+                <div id="header-pending-to-do-container">
+                    <h3>Pending To-Do's</h3>
+                    <div class="header-div">
+                        <span>Title</span>
+                        <span>Creation Date</span>
+                        <span>Due Date</span>
+                        <span>Status</span>
+                        <span>Edit/Delete</span>
+                    </div>
+                </div>
+                <div id="pending-to-do-container">
+                </div>
+            </div>
+            <div id="main-closed-to-do-container">
+                <div id="header-closed-to-do-container">
+                    <h3>Closed To-Do's</h3>
+                    <div class="header-div">
+                        <span>Title</span>
+                        <span>Creation Date</span>
+                        <span>Due Date</span>
+                        <span>Status</span>
+                        <span>Edit/Delete</span>
+                    </div>
+                </div>
+                <div id="closed-to-do-container">
+                </div>
+            </div>
+        </div>
+        <!-- Contenedor avanzado opción 2
+        <div id="to-do-container">
+            <div id="main-active-to-do-container">
+                <div id="header-active-to-do-container">
+                    <h3>Active To-Do's</h3>
+                    <div>
+                        <span>Title</span>
+                    </div>
+                    <div>
+                        <span>Creation Date</span>
+                    </div>
+                    <div>
+                        <span>Due Date</span>
+                    </div>
+                    <div>
+                        <span>Status</span>
+                    </div>
+                    <div>
+                        <span>Edit/Delete</span>
+                    </div>
+                </div>
+                <div id="active-to-do-container">
+                </div>
+            </div>
+            <div id="main-pending-to-do-container">
+                <div id="header-pending-to-do-container">
+                    <h3>Pending To-Do's</h3>
+                    <div>
+                        <span>Title</span>
+                    </div>
+                    <div>
+                        <span>Creation Date</span>
+                    </div>
+                    <div>
+                        <span>Due Date</span>
+                    </div>
+                    <div>
+                        <span>Status</span>
+                    </div>
+                    <div>
+                        <span>Edit/Delete</span>
+                    </div>
+                </div>
+                <div id="pending-to-do-container">
+                </div>
+            </div>
+            <div id="main-closed-to-do-container">
+                <div id="header-closed-to-do-container">
+                    <h3>Closed To-Do's</h3>
+                    <div>
+                        <span>Title</span>
+                    </div>
+                    <div>
+                        <span>Creation Date</span>
+                    </div>
+                    <div>
+                        <span>Due Date</span>
+                    </div>
+                    <div>
+                        <span>Status</span>
+                    </div>
+                    <div>
+                        <span>Edit/Delete</span>
+                    </div>
+                </div>
+                <div id="closed-to-do-container">
+                </div>
+            </div>
+        </div> -->
+        <!-- Contenedor simple
+        <div id="to-do-container">
+            <div id="active-to-do-container">
+                <h3>Active To-Do's</h3>
+            </div>
+            <div id="pending-to-do-container">
+                <h3>Pending To-Do's</h3>
+            </div>            
+            <div id="closed-to-do-container">
+                <h3>Closed To-Do's</h3>
+            </div>
+        </div> -->
+    </main>
+</body>
+</html>
