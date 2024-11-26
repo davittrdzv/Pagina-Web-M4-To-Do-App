@@ -1,91 +1,105 @@
-const form = document.querySelector('#create-to-do-form')
-const toDoInput = document.querySelector('#to-do-input')
-const toDoDate = document.querySelector('#due-date')
-const actRad = document.querySelector('#active-radio')
-const pendRad = document.querySelector('#pending-radio')
-const closRad = document.querySelector('#closed-radio')
-const addButton = document.querySelector('#add-button')
-const toDosContainer = document.querySelector('#to-do-container')
-const toDosActContainer = document.querySelector('#active-to-do-container')
-const toDosPendContainer = document.querySelector('#pending-to-do-container')
-const toDosClosContainer = document.querySelector('#closed-to-do-container')
-let toDos = []
+const form = document.querySelector('#create-to-do-form');
+const toDoInput = document.querySelector('#to-do-input');
+const toDoDate = document.querySelector('#due-date');
+const actRad = document.querySelector('#active-radio');
+const pendRad = document.querySelector('#pending-radio');
+const closRad = document.querySelector('#closed-radio');
+const addButton = document.querySelector('#add-button');
+const toDosContainer = document.querySelector('#to-do-container');
+const toDosActContainer = document.querySelector('#active-to-do-container');
+const toDosPendContainer = document.querySelector('#pending-to-do-container');
+const toDosClosContainer = document.querySelector('#closed-to-do-container');
+let toDos = [];
 
 function submitHandler(event) {
     event.preventDefault();
     const toDoText = toDoInput.value;
 
     if(toDoText === '') {
-        alert('Please include a "To Do" Item')
-        return
+        alert('Please include a "To Do" Item');
+        return;
     }
 
     if(toDoDate.value === '') {
-        alert('Please include a Due Date')
-        return
+        alert('Please include a Due Date');
+        return;
     }
 
     if(actRad.checked === false && pendRad.checked === false && closRad.checked === false) {
-        alert('Please select status of "To Do"')
-        return
+        alert('Please select status of "To Do"');
+        return;
     }
 
     const toDoId = Date.now();
-    let toDoStatus = ''
+    let toDoStatusInObject = '';
 
     if (actRad.checked === true) {
-        toDoStatus = 'Active'
+        toDoStatusInObject = 'Active';
     } else if (pendRad.checked === true) {
-        toDoStatus = 'Pending'
+        toDoStatusInObject = 'Pending';
     } else if (closRad.checked === true) {
-        toDoStatus = 'Closed'
+        toDoStatusInObject = 'Closed';
     }
 
     const newToDo = {
         title: toDoText,
         creation_date: '',
         due_date: toDoDate.value,
-        status: toDoStatus,
+        status: toDoStatusInObject,
         id: toDoId,
-    }
+    };
 
     toDos.push(newToDo);
     renderToDos();
-    toDoInput.value = ""
-    toDoDate.value = ""
-    actRad.checked = false
-    pendRad.checked = false
-    closRad.checked = false
+    toDoInput.value = "";
+    toDoDate.value = "";
+    actRad.checked = false;
+    pendRad.checked = false;
+    closRad.checked = false;
 }
 
+// Función deleteHandler con ciclo for
+// function deleteHandler(event) {
+//     const idToDelete = parseInt(event.target.parentNode.getAttribute('data-id'));
+//     //parseInt convierte el string a número para poder comparar con el !==
+//     const newToDos = [];
+//     for (let i = 0; i < toDos.length; i++) {
+//         if (idToDelete !== toDos[i].id) {
+//             newToDos.push(toDos[i]);
+//             //Este if checa que si texToDelete es distinto a la iteración, entonces hace un push de ese valor al arreglo.
+//         }
+//     };
+//     toDos = newToDos;
+//     renderToDos();
+// };
+
+// // Función deleteHandler con .filter con nueva variable newtoDos
+// function deleteHandler(event) {
+//     const idToDelete = parseInt(event.target.parentNode.getAttribute('data-id'));
+//     const newToDos = toDos.filter((toDo) => toDo.id !== idToDelete);
+//     toDos = newToDos;
+//     renderToDos();
+// };
+
+// Función deleteHandler con .filter sin nueva variable newtoDos
 function deleteHandler(event) {
-    const idToDelete = parseInt(event.target.parentNode.getAttribute('data-id'))
-    //parseInt convierte el string a número para poder comparar con el !==
-    const newToDos = []
-    
-    for (let i = 0; i < toDos.length; i++) {
-        if (idToDelete !== toDos[i].id) {
-            newToDos.push(toDos[i]);
-            //Este if checa que si texToDelete es distinto a la iteración, entonces hace un push de ese valor al arreglo.
-        }
-    }
-
-    toDos = newToDos
-    renderToDos()
-}
+    const idToDelete = parseInt(event.target.parentNode.getAttribute('data-id'));
+    toDos = toDos.filter((toDo) => toDo.id !== idToDelete);
+    renderToDos();
+};
 
 function renderToDos() {
-    toDosActContainer.innerHTML = ""
-    toDosPendContainer.innerHTML = ""
-    toDosClosContainer.innerHTML = ""
+    toDosActContainer.innerHTML = "";
+    toDosPendContainer.innerHTML = "";
+    toDosClosContainer.innerHTML = "";
     //Esta línea hace que la variable toDosContainer
     //se borre todo su contenido,
     //porque el código está agregando todo el array
     
     for(let i = 0; i < toDos.length; i++) {
         const toDoItem = document.createElement('div');
-        toDoItem.setAttribute('data-id', toDos[i].id)
-        toDoItem.setAttribute('class', 'header-div')
+        toDoItem.setAttribute('data-id', toDos[i].id);
+        toDoItem.setAttribute('class', 'header-div');
 
         const toDoTitle = document.createElement('span');
         toDoTitle.textContent = toDos[i].title;
@@ -103,8 +117,8 @@ function renderToDos() {
         const toDoDueDate = document.createElement('span');
         toDoDueDate.textContent = toDos[i].due_date;
 
-        const toDoStatus = document.createElement('span');
-        toDoStatus.textContent = toDos[i].status;
+        const toDoStatusInHTML = document.createElement('span');
+        toDoStatusInHTML.textContent = toDos[i].status;
 
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
@@ -115,21 +129,21 @@ function renderToDos() {
         toDoItem.appendChild(toDoTitle);
         toDoItem.appendChild(toDoCreationDate);
         toDoItem.appendChild(toDoDueDate);
-        toDoItem.appendChild(toDoStatus);
+        toDoItem.appendChild(toDoStatusInHTML);
         toDoItem.appendChild(editButton);
         toDoItem.appendChild(deleteButton);
 
         if (toDos[i].status === 'Active') {
-            toDosActContainer.appendChild(toDoItem)
+            toDosActContainer.appendChild(toDoItem);
         } else if (toDos[i].status === 'Pending') {
-            toDosPendContainer.appendChild(toDoItem)
+            toDosPendContainer.appendChild(toDoItem);
         } else if (toDos[i].status === 'Closed') {
-            toDosClosContainer.appendChild(toDoItem)
+            toDosClosContainer.appendChild(toDoItem);
         }
         
-        deleteButton.addEventListener('click', deleteHandler)
+        deleteButton.addEventListener('click', deleteHandler);
     }
     console.log(toDos);
 }
 
-form.addEventListener('submit', submitHandler)
+form.addEventListener('submit', submitHandler);
