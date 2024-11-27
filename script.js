@@ -11,6 +11,17 @@ const toDosPendContainer = document.querySelector('#pending-to-do-container');
 const toDosClosContainer = document.querySelector('#closed-to-do-container');
 let toDos = [];
 
+function dateTransformer() {
+    const CreationDate = new Date();
+        const dateOptions = {
+            timeZone: 'America/Mexico_City',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+        };
+        return Intl.DateTimeFormat("en-CA", dateOptions).format(CreationDate);
+}
+
 function submitHandler(event) {
     event.preventDefault();
     const toDoText = toDoInput.value;
@@ -43,7 +54,7 @@ function submitHandler(event) {
 
     const newToDo = {
         title: toDoText,
-        creation_date: '',
+        creation_date: dateTransformer(),
         due_date: toDoDate.value,
         status: toDoStatusInObject,
         id: toDoId,
@@ -105,14 +116,8 @@ function renderToDos() {
         toDoTitle.textContent = toDos[i].title;
 
         const toDoCreationDate = document.createElement('span');
-        const CreationDate = new Date();
-        const dateOptions = {
-            timeZone: 'America/Mexico_City',
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-        };
-        toDoCreationDate.textContent = Intl.DateTimeFormat("en-CA", dateOptions).format(CreationDate);
+      
+        toDoCreationDate.textContent = toDos[i].creation_date;;
 
         const toDoDueDate = document.createElement('span');
         toDoDueDate.textContent = toDos[i].due_date;
