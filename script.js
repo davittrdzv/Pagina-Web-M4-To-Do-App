@@ -99,6 +99,26 @@ function deleteHandler(event) {
     renderToDos();
 };
 
+function editHandler(event) {
+    const idToEdit = parseInt(event.target.parentNode.getAttribute('data-id'));
+    alert('You can now edit your "To Do" Item where you initially created it.');
+    for (let i = 0; i < toDos.length; i++) {
+        if (idToEdit === toDos[i].id) {
+            toDoInput.value = toDos[i].title;
+            toDoDate.value = toDos[i].due_date;
+            if (toDos[i].status === 'Active') {
+                actRad.checked = true;
+            } else if (toDos[i].status === 'Pending') {
+                pendRad.checked = true;
+            } else if (toDos[i].status === 'Closed') {
+                closRad.checked = true;
+            }
+            toDos.splice(i, 1);
+        }
+    }
+    // renderToDos();
+};
+
 function renderToDos() {
     toDosActContainer.innerHTML = "";
     toDosPendContainer.innerHTML = "";
@@ -147,6 +167,7 @@ function renderToDos() {
         }
         
         deleteButton.addEventListener('click', deleteHandler);
+        editButton.addEventListener('click', editHandler);
     }
     console.log(toDos);
 }
